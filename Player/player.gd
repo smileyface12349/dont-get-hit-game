@@ -1,5 +1,7 @@
 extends Node
 
+@export var enemies: Node
+
 @export var acceleration: float = 250
 @export var braking: float = 200
 const reverse_delay: float = 0.2
@@ -25,6 +27,12 @@ var reverse_delay_elapsed: float
 var is_reversing: bool
 var is_dead: bool
 
+var stalker: PackedScene = preload("res://Enemies/Stalker/stalker.tscn")
+var surrounder: PackedScene = preload("res://Enemies/Surrounder/surrounder.tscn")
+
+var time_since_spawn: float = 0
+@export var spawn_enemy_every: float = 3
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	speed = 0
@@ -36,6 +44,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_dead:
 		return
+		
+	time_since_spawn += delta
+	if time_since_spawn > spawn_enemy_every:
+		spawn_new_enemy()
+		time_since_spawn = 0
 		
 	if Input.is_action_pressed("driving_accelerate"):
 		# Attempting to accelerate
@@ -113,3 +126,13 @@ func _process(delta: float) -> void:
 	
 func body_entered(body: Area2D) -> void:
 	is_dead = true
+
+func spawn_new_enemy() -> void:
+	var enemy: Node
+	if randf() < 0.2:
+		enemy = stalker.instantiate()
+	else:
+		enemy = surrounder.instantiate()
+		
+	enemies.add_child(enemy)
+	enemy.spawn(self)

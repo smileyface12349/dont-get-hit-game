@@ -1,7 +1,5 @@
 extends Enemy
 
-@export var player: Node
-
 var direction: float
 var speed: float = 100
 
@@ -20,3 +18,7 @@ func _process(delta: float) -> void:
 func body_entered(other: Area2D) -> void:
 	print("Body entered")
 	self.queue_free()
+
+func spawn(player: Node) -> void:
+	super.spawn(player)
+	self.position = player.position + Vector2(0, 500)
