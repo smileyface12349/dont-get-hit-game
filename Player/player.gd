@@ -34,7 +34,8 @@ var stationary: PackedScene = preload("res://Enemies/Stationary/stationary.tscn"
 var stabber: PackedScene = preload("res://Enemies/Stabber/stabber.tscn")
 
 var time_since_spawn: float = 0
-@export var spawn_enemy_every: float = 1.5
+@export var spawn_enemy_every: float = 2
+@export var spawn_enemy_every_increase: float = 1.01
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -52,6 +53,7 @@ func _process(delta: float) -> void:
 	if time_since_spawn > spawn_enemy_every:
 		spawn_new_enemy()
 		time_since_spawn = 0
+		spawn_enemy_every /= spawn_enemy_every_increase
 		
 	if Input.is_action_pressed("driving_accelerate"):
 		# Attempting to accelerate

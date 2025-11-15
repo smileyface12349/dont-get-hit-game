@@ -2,7 +2,7 @@ extends Enemy
 
 var direction: float
 var speed: float = 10
-var acceleration: float = 200
+var acceleration: float = 300
 var target: Vector2
 
 # Called when the node enters the scene tree for the first time.
