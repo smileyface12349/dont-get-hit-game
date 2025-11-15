@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg1vowyt2vyfx"]
+
+[ext_resource type="Texture2D" uid="uid://c3nmwbhnoky3o" path="res://Player/motorcycle_blue.png" id="1_j4g1h"]
+[ext_resource type="Texture2D" uid="uid://c0rohuc4ohsh0" path="res://Player/racer_yellow.png" id="2_qvcqn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwpjs"]
+
+[node name="Player" type="Node2D"]
+
+[node name="Motorcycle" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("1_j4g1h")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kwpjs")
+
+[node name="RacerYellow" type="Sprite2D" parent="."]
+position = Vector2(8.74227e-08, -1)
+texture = ExtResource("2_qvcqn")
