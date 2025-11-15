@@ -23,32 +23,20 @@ var speed: float
 var direction: float
 var reverse_delay_elapsed: float
 var is_reversing: bool
-
-class TopicHover:
-	var go: Callable
-	var text: String
-	
-	static func new_no_topic() -> TopicHover:
-		return TopicHover.new(Callable(), "")
-	
-	func _init(go: Callable, text: String) -> void:
-		self.go = go
-		self.text = text
-		
-	func is_topic() -> bool:
-		return self.text != ""
-
-var current: TopicHover = TopicHover.new_no_topic()
+var is_dead: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	speed = 0
-	#direction = PI
 	reverse_delay_elapsed = 0
 	is_reversing = false
+	is_dead = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if is_dead:
+		return
+		
 	if Input.is_action_pressed("driving_accelerate"):
 		# Attempting to accelerate
 		if speed > 0:
@@ -122,4 +110,6 @@ func _process(delta: float) -> void:
 		self.position.y -= (self.position.y - boundary_bottom) * boundary_force_factor
 	if self.position.y < boundary_top:
 		self.position.y += (boundary_top - self.position.y) * boundary_force_factor
-		
+	
+func body_entered(body: Area2D) -> void:
+	is_dead = true

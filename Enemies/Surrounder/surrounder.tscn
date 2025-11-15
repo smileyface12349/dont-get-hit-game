@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddvq6dqi1yjhn"]
+
+[ext_resource type="Script" path="res://Enemies/Surrounder/surrounder.gd" id="1_7x4xr"]
+[ext_resource type="Texture2D" uid="uid://bbn14d7ri3vv2" path="res://Enemies/Surrounder/car_yellow_4.png" id="1_n10mc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyhjk"]
+radius = 27.0
+height = 100.0
+
+[node name="Surrounder" type="Node2D"]
+script = ExtResource("1_7x4xr")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1, -3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_kyhjk")
+
+[node name="CarYellow4" type="Sprite2D" parent="."]
+position = Vector2(-1, -3)
+texture = ExtResource("1_n10mc")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://ciamj4kt76l20"]
+[gd_scene load_steps=7 format=4 uid="uid://ciamj4kt76l20"]
 
 [ext_resource type="Texture2D" uid="uid://dqpw81sicl1jq" path="res://World/land_grass04.png" id="1_m47qg"]
 [ext_resource type="PackedScene" uid="uid://cg1vowyt2vyfx" path="res://Player/player.tscn" id="2_ytmad"]
-[ext_resource type="Script" path="res://Player/player.gd" id="3_glr2d"]
+[ext_resource type="PackedScene" uid="uid://ddvq6dqi1yjhn" path="res://Enemies/Surrounder/surrounder.tscn" id="4_c6oft"]
+[ext_resource type="PackedScene" uid="uid://de0tmuc5nl2g0" path="res://Enemies/Stalker/stalker.tscn" id="4_eyu3u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jrshh"]
 resource_name = "grass"
@@ -22,9 +23,7 @@ tile_set = SubResource("TileSet_k7pgj")
 
 [node name="Player" parent="." instance=ExtResource("2_ytmad")]
 rotation = 3.14159
-script = ExtResource("3_glr2d")
 acceleration = 200.0
-braking = 300.0
 boundary_top = -1000
 boundary_bottom = 1000
 boundary_left = -1000
@@ -33,3 +32,18 @@ air_resistance = 0.001
 damping = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Stalker" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_eyu3u")]
+position = Vector2(282, 252)
+rotation = -3.14159
+player = NodePath("../../Player")
+
+[node name="Surrounder" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_c6oft")]
+position = Vector2(-161, 99)
+player = NodePath("../../Player")
+
+[node name="Surrounder2" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_c6oft")]
+position = Vector2(449, -176)
+player = NodePath("../../Player")
