@@ -30,9 +30,11 @@ var is_dead: bool
 var stalker: PackedScene = preload("res://Enemies/Stalker/stalker.tscn")
 var surrounder: PackedScene = preload("res://Enemies/Surrounder/surrounder.tscn")
 var straight: PackedScene = preload("res://Enemies/Straight/straight.tscn")
+var stationary: PackedScene = preload("res://Enemies/Stationary/stationary.tscn")
+var stabber: PackedScene = preload("res://Enemies/Stabber/stabber.tscn")
 
 var time_since_spawn: float = 0
-@export var spawn_enemy_every: float = 2
+@export var spawn_enemy_every: float = 1.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -131,12 +133,16 @@ func body_entered(body: Area2D) -> void:
 func spawn_new_enemy() -> void:
 	var enemy: Node
 	var n = randf()
-	if n < 0.15:
+	if n < 0.1:
 		enemy = stalker.instantiate()
-	elif n < 0.8:
-		enemy = straight.instantiate()
-	else:
+	elif n < 0.2:
 		enemy = surrounder.instantiate()
+	elif n < 0.4:
+		enemy = straight.instantiate()
+	elif n < 0.5:
+		enemy = stabber.instantiate()
+	else:
+		enemy = stationary.instantiate()
 		
 	enemies.add_child(enemy)
 	enemy.spawn(self)

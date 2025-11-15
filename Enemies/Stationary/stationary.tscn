@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfnlpeuyptier"]
+
+[ext_resource type="Script" path="res://Enemies/Stationary/stationary.gd" id="1_fm8ff"]
+[ext_resource type="Texture2D" uid="uid://b82kiw5td6h3g" path="res://Enemies/Stationary/car_black_2.png" id="2_qyund"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mxcu5"]
+radius = 21.0
+height = 92.0
+
+[node name="Stationary" type="Node2D"]
+script = ExtResource("1_fm8ff")
+
+[node name="CarBlack2" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+texture = ExtResource("2_qyund")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_mxcu5")
