@@ -7,7 +7,6 @@ var speed: float = 100
 func _ready() -> void:
 	print("Hello, I'm a stalker")
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if player == null or player.is_dead:
@@ -15,10 +14,7 @@ func _process(delta: float) -> void:
 	direction = (player.position - self.position).angle() + PI/2
 	self.position += Vector2.from_angle(direction - PI/2) * speed * delta
 	self.rotation = direction
-	
-func body_entered(other: Area2D) -> void:
-	print("Body entered")
-	self.queue_free()
+
 
 func spawn(player: Node) -> void:
 	super.spawn(player)

@@ -5,7 +5,7 @@ var speed: float = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	print("Hello, I'm a surrounder")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -14,10 +14,6 @@ func _process(delta: float) -> void:
 	direction = (player.position - self.position).angle()
 	self.position += Vector2.from_angle(direction - PI/2) * speed * delta
 	self.rotation = direction
-	
-func body_entered(other: Area2D) -> void:
-	print("Body entered")
-	self.queue_free()
 
 func spawn(player: Node) -> void:
 	super.spawn(player)

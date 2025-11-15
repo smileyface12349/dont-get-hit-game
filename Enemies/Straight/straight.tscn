@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://8vsr66mn6ool"]
+
+[ext_resource type="Texture2D" uid="uid://1f6vof0u0f26" path="res://Enemies/Straight/car_green_1.png" id="1_invw0"]
+[ext_resource type="Script" path="res://Enemies/Straight/straight.gd" id="1_nmgl6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ryyq"]
+radius = 23.0
+height = 112.0
+
+[node name="Straight" type="Node2D"]
+script = ExtResource("1_nmgl6")
+
+[node name="CarGreen1" type="Sprite2D" parent="."]
+texture = ExtResource("1_invw0")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_6ryyq")
